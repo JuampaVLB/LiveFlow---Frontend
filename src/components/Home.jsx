@@ -5,7 +5,7 @@ import styles from "../modules/Home.module.css";
 import wifi from "../assets/no-wifi.png";
 import Message from "./Message";
 
-const socket = io.connect("http://localhost:4000");
+const socket = io.connect("liveflow-backend-production.up.railway.app");
 
 function Home() {
   const [message, setMessage] = useState("");
