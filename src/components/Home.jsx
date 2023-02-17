@@ -7,7 +7,7 @@ import Message from "./Message";
 
 const socket = io.connect("http://localhost:4000");
 
-function Footer() {
+function Home() {
   const [message, setMessage] = useState("");
   const [saveMessage, setSaveMessage] = useState([]);
 
@@ -85,4 +85,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Home;
