@@ -1,6 +1,4 @@
 import styles from "../modules/Footer.module.css"
-import perfil from "../assets/perfil.png"
-
 
 function Footer() {
     return (

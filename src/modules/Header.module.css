@@ -41,8 +41,21 @@
     text-decoration: none;
 }
 
+.boton{
+    border-style: none;
+    background:#04bb35 ;
+    font-family: 'Anton', sans-serif;
+    font-family: 'Comfortaa', cursive;
+    font-family: 'Poppins', sans-serif;
+    color:white;
+    cursor:pointer;
+}
+
 .foto{
-    height:30px;
+    width: 35px;
+    width: 45px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .logo{
