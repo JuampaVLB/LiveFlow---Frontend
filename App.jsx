@@ -6,13 +6,11 @@ import Home from "./components/Home"
 
 // Web Sockets
 
-const socket = io.connect('liveflow-backend-production.up.railway.app');
+const socket = io.connect('http://localhost:4000');
+
+// liveflow-backend-production.up.railway.app
 
 function App() {
-
-  // socket.on('probando', {
-  //   body: 'HOLA MUNDO'
-  // })
 
   return (
     <>

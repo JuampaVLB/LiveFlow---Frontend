@@ -11,7 +11,10 @@ import styles from "../modules/Home.module.css";
 import { authApi } from "../api/auth.js";
 import wifi from "../assets/no-wifi.png";
 
-const socket = io.connect("liveflow-backend-production.up.railway.app");
+const socket = io.connect("http://localhost:4000");
+
+// https://liveflow-backend-production.up.railway.app
+
 
 function Home() {
   const [message, setMessage] = useState("");
@@ -29,12 +32,12 @@ function Home() {
       });
     }
 
-    socket.emit("message", message);
-
     const newMessage = {
       body: message,
-      from: "Me",
+      from: window.localStorage.getItem("username"),
     };
+
+    socket.emit("message", newMessage);
 
     setSaveMessage([...saveMessage, newMessage]);
     setMessage("");
@@ -42,7 +45,8 @@ function Home() {
 
   useEffect(() => {
     const receiveMessage = (message) => {
-      setSaveMessage([...saveMessage, message]);
+      console.log("body es: " + message.body)
+     setSaveMessage([...saveMessage, message]);
     };
 
     socket.on("message", receiveMessage);

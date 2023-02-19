@@ -44,7 +44,7 @@ const Overlay = styled.div`
 
 const ContenedorModal = styled.div`
   width: 30%;
-  height: 50%;
+  height: 60%;
   position: relative;
   border-radius: 5px;
   background: #fff;
