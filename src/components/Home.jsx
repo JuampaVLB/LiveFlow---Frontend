@@ -11,10 +11,10 @@ import styles from "../modules/Home.module.css";
 import { authApi } from "../api/auth.js";
 import wifi from "../assets/no-wifi.png";
 
-const socket = io.connect("http://localhost:4000");
+const socket = io.connect("https://liveflow-backend-production.up.railway.app");
 
+// http://localhost:4000
 // https://liveflow-backend-production.up.railway.app
-
 
 function Home() {
   const [message, setMessage] = useState("");
@@ -32,9 +32,17 @@ function Home() {
       });
     }
 
+    let user = "";
+
+    if(window.localStorage.getItem("username") === null) {
+       user = "Random_User"
+    } else {
+      user = window.localStorage.getItem("username");
+    }
+
     const newMessage = {
       body: message,
-      from: window.localStorage.getItem("username"),
+      from: user,
     };
 
     socket.emit("message", newMessage);
@@ -45,14 +53,12 @@ function Home() {
 
   useEffect(() => {
     const receiveMessage = (message) => {
-      console.log("body es: " + message.body)
-     setSaveMessage([...saveMessage, message]);
+      setSaveMessage([...saveMessage, message]);
     };
 
     socket.on("message", receiveMessage);
 
     return () => {
-      console.log(saveMessage);
       socket.off("message", receiveMessage);
     };
   }, [saveMessage]);

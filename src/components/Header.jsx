@@ -27,7 +27,6 @@ function Header() {
   const [estadoModal2, CambiarEstadoModal2] = useState(false);
   const [perfilmodal, CambiarPerfilModal] = useState(false);
   useEffect(() => {
-    
     if (tokenJWT) {
       const decoded = jwt_decode(tokenJWT);
 
@@ -45,7 +44,7 @@ function Header() {
           setTel(result.data.user.tel);
         })
         .catch((err) => {
-          logged = false;
+          setLogged(false);
           console.log(err);
         });
     }
@@ -95,7 +94,6 @@ function Header() {
       })
       .catch((err) => {
         let obj = JSON.parse(err.request.response);
-        console.log(obj.message);
         Swal.fire({
           title: "Error",
           text: obj.message,
@@ -107,38 +105,31 @@ function Header() {
 
   const Reset = () => {
     window.localStorage.removeItem("username");
-    setUsername('');
-    setPassword('');
-    setEmail('');
-    setTel('');
-  }
+    setUsername("");
+    setPassword("");
+    setEmail("");
+    setTel("");
+  };
 
   const logout = () => {
-
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Do you want log out ?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Okey",
     }).then((result) => {
       if (result.isConfirmed) {
         Reset();
-        CambiarPerfilModal2(false);
-        window.localStorage.removeItem('token');
+        CambiarPerfilModal(false);
+        window.localStorage.removeItem("token");
         setLogged(false);
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+        Swal.fire("Great!", "your account has been logout.", "success");
       }
-    })
-
-    
-  }
+    });
+  };
 
   return (
     <>
@@ -242,14 +233,14 @@ function Header() {
                     </PerfilDatos>
                     <PerfilDefecto>
                       <span>{username}</span>
-                      <span>{password}</span>
+                      <span>***************</span>
                       <span>{email}</span>
-                      <span>{tel}</span>
+                      <span>+54 11 {tel}</span>
                     </PerfilDefecto>
                   </Perfil>
                   <Botones>
                     <button>Prender Directo</button>
-                    <button onClick={logout} >Cerrar Sesion</button>
+                    <button onClick={logout}>Cerrar Sesion</button>
                   </Botones>
                 </MostrarDatos>
                 <RedesDatos>
